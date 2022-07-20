@@ -1,45 +1,42 @@
 import { useState } from "react";
-import StaffDetail from "./StaffDetailComponent";
+import { Link } from "react-router-dom";
 
 function StaffList({ staffs }) {
-  const [selectedStaff, setSelectedStaff] = useState();
-  const [selectedColumn, setSelectedColumn] = useState(
-    "col-md-4 col-sm-6 col-xs-12"
-  );
-  const handleSelectStaff = (staff) => {
-    setSelectedStaff(staff);
-  };
-  const handleSelectColumn2 = () => {
-    setSelectedColumn("col-md-6 col-sm-6 col-xs-6")
-  };
-
-  const handleSelectColumn3 = () => {
-    setSelectedColumn('col-md-4 col-sm-4 col-xs-4')
-  };
-
-  const handleSelectColumn6 = () => {
-    setSelectedColumn('col-md-2 col-sm-2 col-xs-2')
-  };
+  const [searchStaff, setSearchStaff] = useState("");
+  const [searchedStaff, setSearchedStaff] = useState("");
+  function handleSearch() {
+    setSearchedStaff(searchStaff);
+  }
   return (
     <div className="container">
-      <div className="staffList-btn d-sm-flex">
-        hiển thị
-        <button onClick={() => handleSelectColumn2()}>2 Cột</button>
-        <button onClick={() => handleSelectColumn3()}>3 Cột</button>
-        <button onClick={() => handleSelectColumn6()}>6 Cột</button>
+      <div >
+        <input
+          value={searchStaff}
+          onChange={(e) => setSearchStaff(e.target.value.toLowerCase())}
+          placeholder="Nhập tên nhân viên"
+        ></input>
+        <button onClick={handleSearch}>Tìm kiếm</button>
       </div>
       <div className="row">
-        {staffs.map((staff) => (
-          <div
-            key={staff.id}
-            className={selectedColumn}
-            onClick={() => handleSelectStaff(staff)}
-          >
-            <div className="staffList-staff">{staff.name}</div>
-          </div>
-        ))}
+        {staffs
+          .filter((item) => {
+            if (item.name.toLowerCase().includes(searchedStaff)) {
+              return true;
+            } else return false;
+          })
+          .map((staff) => (
+            <Link
+              to={`/staffs/${staff.id}`}
+              key={staff.id}
+              className="col-md-2 col-sm-4 col-6"
+            >
+              <div className="staffList-staff">
+                <img src={staff.image}></img>
+                <div>{staff.name}</div>
+              </div>
+            </Link>
+          ))}
       </div>
-      <StaffDetail selectedStaff={selectedStaff} />
     </div>
   );
 }

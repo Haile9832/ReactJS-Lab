@@ -1,22 +1,68 @@
 /* StaffListComponent */
-
 .staffList-staff {
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 12px;
   padding: 10px;
   margin-top: 10px;
 }
-.staffList-btn {
-  margin: 10px 0;
-  display: none;
+.staffList-staff div {
+  text-align: center;
+  text-decoration: none;
 }
-
-
+.staffList-staff img {
+  width: 100%;
+  margin: 0 auto;
+}
 /* StaffDetailComponent */
-
-.StaffDetail {
+.staffDetail {
+  margin-bottom: 10px;
+}
+/* Department */
+.department {
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 12px;
   padding: 10px;
   margin-top: 10px;
+}
+
+/* Salary */
+.salary {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  padding: 10px;
+  margin-top: 10px;
+}
+/* Default Nav */
+.row-header {
+  margin: 0px auto;
+  padding: 0px auto;
+}
+
+.row-content {
+  margin: 0px auto;
+  padding: 50px 0px 50px 0px;
+  border-bottom: 1px ridge;
+  min-height: 400px;
+}
+
+.footer {
+  background-color: #d1c4e9;
+  margin: 0px auto;
+  padding: 20px 0px 20px 0px;
+}
+.jumbotron {
+  padding: 70px 30px 70px 30px;
+  margin: 0px auto;
+  background: #9575cd;
+  color: floralwhite;
+}
+
+address {
+  font-size: 80%;
+  margin: 0px;
+  color: #0f0f0f;
+}
+
+.navbar-dark {
+  background-color: #512da8;
 }
