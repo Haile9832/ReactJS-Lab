@@ -1,5 +1,14 @@
 import React from "react";
-import { Card, CardImg, CardText, CardBody, CardTitle } from "reactstrap";
+import {
+  Card,
+  CardImg,
+  CardText,
+  CardBody,
+  CardTitle,
+  Breadcrumb,
+  BreadcrumbItem,
+} from "reactstrap";
+import { Link } from "react-router-dom";
 import dateFormat from "dateformat";
 
 function RenderDish({ selectedDish }) {
@@ -13,7 +22,7 @@ function RenderDish({ selectedDish }) {
     </Card>
   );
 }
-function RenderComments({comments}) {
+function RenderComments({ comments }) {
   return (
     <div>
       <h4>Comments</h4>
@@ -28,21 +37,30 @@ function RenderComments({comments}) {
     </div>
   );
 }
-const Dishdetail = (props) => {
-  if (props.selectedDish != null) {
+const DishDetail = (props) => {
+  console.log(props)
+  if (props.dish != null) {
     return (
-      <div className="row">
-        <div className="col-12 col-md-5 m-1">
-          <RenderDish selectedDish={props.selectedDish} />
+      <>
+        <Breadcrumb>
+          <BreadcrumbItem>
+            <Link to="/menu">Menu</Link>
+          </BreadcrumbItem>
+          <BreadcrumbItem active>{props.dish.name}</BreadcrumbItem>
+        </Breadcrumb>
+        <div className="row">
+          <div className="col-12 col-md-5 m-1">
+            <RenderDish selectedDish={props.dish} />
+          </div>
+          <div className="col-12 col-md-5 m-1">
+            <RenderComments comments={props.comments} />
+          </div>
         </div>
-        <div className="col-12 col-md-5 m-1">
-          <RenderComments comments={props.selectedDish.comments}/>
-        </div>
-      </div>
+      </>
     );
   } else {
     return <div></div>;
   }
 };
 
-export default Dishdetail;
+export default DishDetail;
